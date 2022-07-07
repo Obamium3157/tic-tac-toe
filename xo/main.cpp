@@ -77,6 +77,7 @@ std::string fill(State state) {
 }
 
 void reveal_field() {
+    system("clear");
     for(int i = 0; i < columns; i++) {
         for(int j = 0; j < rows; j++) {
             std::cout << fill(EMPTY) << " ";
