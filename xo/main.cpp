@@ -135,6 +135,14 @@ void printWinner() {
     std::cout << " player win!\n";
 }
 
+void printPlayer() {
+    if(player == FIRST)
+        std::cout << "Ход первого игрока\n";
+    else {
+        std::cout << "Ход второго игрока\n";
+    }
+}
+
 int main(int argc, const char * argv[]) {
     int colN, rowN;
     reveal_field();
@@ -146,8 +154,13 @@ int main(int argc, const char * argv[]) {
             return 0;
         }
         
+        printPlayer();
+        
         colN = input("Enter column number:");
         rowN = input("Enter row number: ");
+        
+        if(memory[colN][rowN] != 0)
+            continue;
             
         refill(colN, rowN);
     }
