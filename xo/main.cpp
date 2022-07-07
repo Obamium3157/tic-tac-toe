@@ -100,18 +100,24 @@ void refill(int colN, int rowN) {
     }
 }
 
+int input(std::string message) {
+    std::cout << message << std::endl;
+    int x;
+    std::cin >> x;
+    if((0 < x) && (x < 4))
+        return x - 1;
+    else
+        input(message);
+    return 0;
+}
+
 int main(int argc, const char * argv[]) {
     int colN, rowN;
     reveal_field();
     
-    while(true) {
-        std::cout << "Enter column number: ";
-        // TODO:  сделать проверку правильности ввода
-        std::cin >> colN;
-        colN--;
-        std::cout << "Enter row number: ";
-        std::cin >> rowN;
-        rowN -= 1;
+    while(inGame) {
+        colN = input("Enter column number:");
+        rowN = input("Enter row number: ");
             
         refill(colN, rowN);
     }
