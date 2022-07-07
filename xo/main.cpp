@@ -54,17 +54,6 @@ int switchTurn(State state) {
     }
 }
 
-int switchTurn() {
-    switch(player) {
-        case FIRST:
-            return 1;
-            break;
-        case SECOND:
-            return 2;
-            break;
-    }
-}
-
 std::string fill(State state) {
     switch (state) {
         case EMPTY:
@@ -111,6 +100,7 @@ State smth(int index) {
 }
 
 void refill(int colN, int rowN) {
+    system("clear");
     memory[rowN][colN] = switchTurn(turn());
     
     for(int c = 0; c < columns; c++) {
