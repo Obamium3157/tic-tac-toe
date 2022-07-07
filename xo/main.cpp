@@ -14,7 +14,11 @@ Player player = FIRST;
 bool isVictory() {
     for(int i = 0; i < columns; i++) {
         for(int j = 0; j < rows; j++) {
-            if(((memory[i][0] == memory[i][1]) && (memory[i][0] == memory[i][2])) && memory[i][0] != 0){
+            if(
+               (((memory[i][0] == memory[i][1]) && (memory[i][0] == memory[i][2])) && memory[i][0] != 0)
+               || ((memory[0][0] == memory[1][1]) && (memory[0][0] == memory[2][2]) && memory[0][0] != 0)
+               || ((memory[2][0] == memory[1][1]) && (memory[2][0] == memory[0][2]) && memory[2][0] != 0)
+               ){
                 return true;
             } else {
                 continue;
