@@ -11,6 +11,20 @@ enum State { EMPTY, X, ZERO };
 enum Player { FIRST, SECOND };
 Player player = FIRST;
 
+bool isVictory() {
+    for(int i = 0; i < columns; i++) {
+        for(int j = 0; j < rows; j++) {
+            if(((memory[i][0] == memory[i][1]) && (memory[i][0] == memory[i][2])) && memory[i][0] != 0){
+                return true;
+            } else {
+                continue;
+            }
+        }
+    }
+    
+    return false;
+}
+
 State turn() {
     if(player == FIRST) {
         player = SECOND;
@@ -19,6 +33,13 @@ State turn() {
         player = FIRST;
         return ZERO;
     }
+}
+
+void changePlayer() {
+    if(player == FIRST)
+        player = SECOND;
+    else
+        player = FIRST;
 }
 
 int switchTurn(State state) {
@@ -111,11 +132,25 @@ int input(std::string message) {
     return 0;
 }
 
+void printWinner() {
+    if(player == FIRST)
+        std::cout << "First";
+    else
+        std::cout << "Second";
+    std::cout << " player win!\n";
+}
+
 int main(int argc, const char * argv[]) {
     int colN, rowN;
     reveal_field();
     
     while(inGame) {
+        if(isVictory()) {
+            changePlayer();
+            printWinner();
+            return 0;
+        }
+        
         colN = input("Enter column number:");
         rowN = input("Enter row number: ");
             
