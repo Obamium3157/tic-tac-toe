@@ -12,18 +12,18 @@ enum Player { FIRST, SECOND };
 Player player = FIRST;
 
 bool isVictory() {
-    for(int i = 0; i < columns; i++) {
-        for(int j = 0; j < rows; j++) {
-            if(
-               (((memory[i][0] == memory[i][1]) && (memory[i][0] == memory[i][2])) && memory[i][0] != 0)
-               || ((memory[0][0] == memory[1][1]) && (memory[0][0] == memory[2][2]) && memory[0][0] != 0)
-               || ((memory[2][0] == memory[1][1]) && (memory[2][0] == memory[0][2]) && memory[2][0] != 0)
-               ){
-                return true;
-            } else {
-                continue;
-            }
-        }
+    for(int c = 0; c < columns; c++) {
+        if((memory[c][0] == memory[c][1]) && (memory[c][0] == memory[c][2]) && memory[c][0] != 0)
+            return true;
+        else
+            continue;
+    }
+    
+    for(int r = 0; r < rows; r++) {
+        if((memory[0][r] == memory[1][r]) && (memory[0][r] == memory[2][r]) && (memory[0][r] != 0))
+            return true;
+        else
+            continue;
     }
     
     return false;
