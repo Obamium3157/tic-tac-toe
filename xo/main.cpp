@@ -29,6 +29,19 @@ bool isVictory() {
     return false;
 }
 
+bool isDraw() {
+    for(int c = 0; c < columns; c++) {
+        for(int r = 0; r < rows; r++) {
+            if(memory[c][r] != 0)
+                continue;
+            else
+                return false;
+        }
+    }
+    
+    return true;
+}
+
 State turn() {
     if(player == FIRST) {
         player = SECOND;
@@ -143,6 +156,10 @@ void printPlayer() {
     }
 }
 
+void printDraw() {
+    std::cout << "Ничья!\n";
+}
+
 int main(int argc, const char * argv[]) {
     int colN, rowN;
     reveal_field();
@@ -153,14 +170,15 @@ int main(int argc, const char * argv[]) {
             printWinner();
             return 0;
         }
+        if(isDraw()) {
+            printDraw();
+            return 0;
+        }
         
         printPlayer();
         
         colN = input("Enter column number:");
         rowN = input("Enter row number: ");
-        
-        if(memory[colN][rowN] != 0)
-            continue;
             
         refill(colN, rowN);
     }
